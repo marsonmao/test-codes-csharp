@@ -44,8 +44,10 @@
     <Compile Include="AnotherDebug.cs" />
     <Compile Include="Array.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="ExtentionMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
