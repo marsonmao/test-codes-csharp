@@ -329,8 +329,84 @@ class Program
         return sb.ToString();
     }
 
+    class SomeClass
+    {
+
+    }
+    //class SomeGeneric<T> where T : typeof(SomeClass)
+    //{
+
+    //}
+
+    class UseDelegate
+    {
+        public delegate void DEL();
+        public DEL del;
+    }
+    class UseEvent
+    {
+        public delegate void DEL();
+        public event DEL eve;
+        public void Call() { eve(); }
+    }
+    static public void DDD1()
+    {
+        Console.WriteLine(1);
+    }
+    static public void DDD2()
+    {
+        Console.WriteLine(2);
+    }
+
+    class SBase1
+    {
+
+    }
+    class SBase2 : SBase1
+    {
+
+    }
+
+    class GBase<T> : T
+    {
+        public int Doo()
+        {
+            return 1;
+        }
+    }
+
     static void Main(string[] args)
     {
+        {
+            GBase<SBase1> gb1 = new GBase<SBase1>();
+            gb1.Doo();
+        }
+        {
+            //var op1 = x => x += 1; // compile error
+            Action<int> op2 = x => x += 1;
+            Action<int> op3 = (int x) => x += 1;
+
+            List<int> list = new List<int>(1);
+            list.Add(777);
+            list[0] = 888;
+
+            Console.WriteLine(1);
+        }
+        {
+            UseDelegate ud = new UseDelegate();
+            UseEvent ue = new UseEvent();
+
+            ud.del += DDD1;
+            ud.del += DDD2;
+            ud.del();
+
+            ue.eve += DDD1;
+            ue.eve += DDD2;
+            //ue.eve();
+            ue.Call();
+
+            Console.WriteLine(1);
+        }
         {
             List<int> ints = new List<int>(20000);
             Random rd = new Random();
